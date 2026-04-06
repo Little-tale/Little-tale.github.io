@@ -1,10 +1,18 @@
+// 이 파일은 포트폴리오의 핵심 작업물 섹션을 렌더링한다.
+// 긴 프로젝트 데이터를 메타, 기능, 하이라이트, 문제 해결 사례로 나눠 읽기 쉬운 기사형 구조로 배치한다.
 import type { Project } from "@/domain";
 import SectionHeader from "@/components/ui/SectionHeader";
 
+// 프로젝트 섹션 입력 속성 구조다.
 type Props = {
   projects: readonly Project[];
 };
 
+/**
+ * 프로젝트 목록을 기사형 아티클로 렌더링한다.
+ * 입력은 프로젝트 데이터 배열이며, 반환값은 섹션 헤더와 프로젝트별 상세 블록 JSX다.
+ * 부작용은 없고, 각 프로젝트의 `link`, `status`, `cause`, `bullets` 유무에 따라 일부 영역만 조건부로 노출된다.
+ */
 export default function Projects({ projects }: Props) {
   return (
     <section
@@ -17,10 +25,12 @@ export default function Projects({ projects }: Props) {
         subtitle="2024 — 2025"
       />
 
+      {/* 각 프로젝트 사이 여백을 크게 두어 하나의 케이스 스터디처럼 읽히도록 만든다. */}
       <div className="space-y-32 md:space-y-48">
         {projects.map((p) => (
           <article key={p.id} id={p.id} className="scroll-mt-24">
             {/* Title row */}
+            {/* 프로젝트명과 기간을 크게 분리해 첫 스캔에서 핵심 메타가 바로 들어오게 한다. */}
             <header className="border-t border-border pt-8 mb-12">
               <div className="flex items-baseline justify-between gap-6 mb-6">
                 <span className="text-xs font-mono text-muted-foreground">
@@ -44,6 +54,7 @@ export default function Projects({ projects }: Props) {
             </header>
 
             {/* Meta grid */}
+            {/* 환경/팀/스택을 3개 패널로 끊어, 긴 본문 전에 프로젝트 맥락을 빠르게 요약한다. */}
             <div className="grid grid-cols-1 md:grid-cols-12 gap-px bg-border mb-px">
               <div className="md:col-span-3 bg-background p-6">
                 <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-3">
@@ -77,6 +88,7 @@ export default function Projects({ projects }: Props) {
             </div>
 
             {/* Features */}
+            {/* 기능은 균등 카드 그리드로 배치해 제품 범위를 한눈에 보여 준다. */}
             <div className="mt-16">
               <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-6">
                 Core Features
@@ -94,6 +106,7 @@ export default function Projects({ projects }: Props) {
             </div>
 
             {/* Highlights */}
+            {/* 하이라이트는 hover 반응을 넣어 정적인 텍스트 블록에 가벼운 인터랙션을 더한다. */}
             <div className="mt-16">
               <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-6">
                 Highlights
@@ -114,6 +127,7 @@ export default function Projects({ projects }: Props) {
             </div>
 
             {/* Troubles */}
+            {/* 문제 해결 사례는 기본적으로 첫 항목만 열어 두어 정보량을 제어하면서도 한 가지는 바로 읽히게 한다. */}
             <div className="mt-16">
               <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-6">
                 Problem-Solving Cases
@@ -138,6 +152,7 @@ export default function Projects({ projects }: Props) {
                         +
                       </span>
                     </summary>
+                    {/* 문제/원인/해결을 열 단위로 분리해 기술 판단 근거를 스캔하기 쉽게 만든다. */}
                     <div className="px-6 pb-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm leading-relaxed">
                       <div>
                         <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-2">

@@ -17,6 +17,7 @@
 
 # production
 /build
+/dist
 
 # misc
 .DS_Store
@@ -38,6 +39,21 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+# tsc -b emits these from vite.config.ts — not source
+vite.config.js
+vite.config.d.ts
 
 # figma cache & secrets
 .figma/
+
+# local AI tooling & agents (not part of the app)
+.claude/
+.agents/
+.omc/
+.mcp.json
+skills-lock.json
+
+# editor
+.vscode/
+.idea/
+*.swp

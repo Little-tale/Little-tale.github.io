@@ -1,5 +1,8 @@
+// 이 파일은 히어로, 소개, 연락처에서 공통으로 참조하는 기본 프로필 데이터를 담는다.
+// 개인 식별 정보와 외부 링크는 여러 섹션에서 재사용되므로 단일 상수로 관리한다.
 import type { Profile } from "@/domain";
 
+// 한 사람의 핵심 소개 정보를 UI에서 바로 사용할 수 있는 형태로 유지한다.
 export const profile: Profile = {
   name: "김재형",
   nameEn: "Kim Jaehyung",

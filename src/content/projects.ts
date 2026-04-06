@@ -1,6 +1,10 @@
+// 이 파일은 프로젝트 섹션 전체를 구성하는 대표 작업물 데이터를 보관한다.
+// 각 객체는 화면에서 하나의 프로젝트 아티클로 렌더링되며, 기능/하이라이트/문제 해결 사례 순서를 그대로 따른다.
 import type { Project } from "@/domain";
 
+// 배열 순서가 포트폴리오에서 보여 주고 싶은 프로젝트 우선순위이므로 수동 정렬 의도를 유지한다.
 export const projects: readonly Project[] = [
+  // 실무 경험을 가장 먼저 배치해 현재 역량과 실제 서비스 운영 경험이 바로 보이도록 한다.
   {
     id: "missgo",
     title: "미스고 부동산",
@@ -28,6 +32,7 @@ export const projects: readonly Project[] = [
         body: "실투자금만 입력하면 세금 및 대출 비중을 적용한 매물 추천",
       },
     ],
+    // 스택은 화면 메타 그리드에서 라벨/내용 한 줄씩 읽히도록 정리한다.
     stack: [
       { label: "Framework", items: "UIKit (95%), SwiftUI (5%)" },
       {
@@ -71,6 +76,7 @@ export const projects: readonly Project[] = [
         body: "경매·공매·예정매물 마커와 오버레이를 구현하고, 임장 네비게이션 기능으로 지도 탐색 경험을 강화했습니다.",
       },
     ],
+    // 문제 해결 사례는 아코디언으로 열리므로, 제목만 봐도 맥락이 잡히게 구성한다.
     troubles: [
       {
         title: "지도 UI 로직과 도메인 로직의 분리",
@@ -117,6 +123,7 @@ export const projects: readonly Project[] = [
       },
     ],
   },
+  // 개인 출시 앱은 설계/자동화 역량을 보여 주는 사례로 실무 프로젝트 다음에 둔다.
   {
     id: "goolbi",
     title: "굴비잇기",
@@ -184,6 +191,7 @@ export const projects: readonly Project[] = [
         body: "Kakao, Apple 로그인을 통한 간편 로그인 기능 구현.",
       },
     ],
+    // 운영 자동화와 사용자 기능이 모두 드러나도록 구현 포인트를 폭넓게 기록한다.
     troubles: [
       {
         title: "Fastlane 적용",
@@ -228,6 +236,7 @@ export const projects: readonly Project[] = [
       },
     ],
   },
+  // UIKit 기반 협업 프로젝트는 네트워크/실시간 통신/성능 관점의 경험을 보여 준다.
   {
     id: "categoryz",
     title: "CategoryZ",
@@ -286,6 +295,7 @@ export const projects: readonly Project[] = [
         body: "Offset/Index 방식 대신 Cursor 기반을 적용해 중복 없이 다음 데이터를 조회하도록 구성했습니다.",
       },
     ],
+    // 디버깅/보안/라이프사이클 판단처럼 구현 이유가 드러나는 사례를 모아 둔다.
     troubles: [
       {
         title: "Instruments 도입",
@@ -324,6 +334,7 @@ export const projects: readonly Project[] = [
       },
     ],
   },
+  // 출시 취소 프로젝트도 기술 선택과 설계 판단 근거를 보여 주기 위해 포트폴리오에 포함한다.
   {
     id: "guideu",
     title: "Guide-U",
@@ -382,6 +393,7 @@ export const projects: readonly Project[] = [
         body: "App Group 기반 UserDefaults를 공유 저장소로 구성해 메인 앱과 Share Extension이 동일한 데이터를 접근하도록 설계했습니다.",
       },
     ],
+    // Swift 6 전환 배경과 동시성 설계 판단을 사례 중심으로 정리한다.
     troubles: [
       {
         title: "Swift 6 왜 도입하였는가",

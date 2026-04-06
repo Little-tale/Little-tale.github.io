@@ -1,5 +1,8 @@
+// 이 파일은 개발 철학 섹션에 노출할 카드형 문구들을 보관한다.
+// 렌더링 로직과 문구 데이터를 분리해 텍스트 수정만으로 섹션 메시지를 바꿀 수 있게 한다.
 import type { PhilosophyEntry } from "@/domain";
 
+// 카드 순서 자체가 화면 노출 순서가 되므로, 전달하고 싶은 흐름에 맞춰 배열 순서를 유지한다.
 export const philosophy: readonly PhilosophyEntry[] = [
   {
     title: "새로운 기술을 도전하는 개발자",
