@@ -2,6 +2,7 @@
 // 텍스트 위주의 내용이 지루해지지 않도록 번호와 hover 반응을 함께 사용한다.
 import type { PhilosophyEntry } from "@/domain";
 import SectionHeader from "@/components/ui/SectionHeader";
+import Reveal from "@/components/ui/Reveal";
 
 // 개발 철학 섹션 입력 속성 구조다.
 type Props = {
@@ -28,8 +29,9 @@ export default function Philosophy({ entries }: Props) {
       {/* gap-px + 배경색 조합으로 카드 사이를 실제 테두리보다 더 선명한 분할선처럼 보이게 한다. */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border">
         {entries.map((p, i) => (
-          <div
+          <Reveal
             key={p.title}
+            delay={i * 120}
             className="bg-background p-8 md:p-12 hover:bg-muted transition-colors group"
           >
             <div className="flex items-start justify-between mb-6">
@@ -44,7 +46,7 @@ export default function Philosophy({ entries }: Props) {
             <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
               {p.body}
             </p>
-          </div>
+          </Reveal>
         ))}
       </div>
     </section>

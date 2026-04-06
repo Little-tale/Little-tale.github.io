@@ -2,6 +2,7 @@
 // 긴 프로젝트 데이터를 메타, 기능, 하이라이트, 문제 해결 사례로 나눠 읽기 쉬운 기사형 구조로 배치한다.
 import type { Project } from "@/domain";
 import SectionHeader from "@/components/ui/SectionHeader";
+import Reveal from "@/components/ui/Reveal";
 
 // 프로젝트 섹션 입력 속성 구조다.
 type Props = {
@@ -20,7 +21,7 @@ export default function Projects({ projects }: Props) {
       className="px-6 md:px-10 max-w-[1400px] mx-auto py-24 md:py-32"
     >
       <SectionHeader
-        index="(03) Projects"
+        index="(04) Projects"
         title="Selected Work"
         subtitle="2024 — 2025"
       />
@@ -28,7 +29,8 @@ export default function Projects({ projects }: Props) {
       {/* 각 프로젝트 사이 여백을 크게 두어 하나의 케이스 스터디처럼 읽히도록 만든다. */}
       <div className="space-y-32 md:space-y-48">
         {projects.map((p) => (
-          <article key={p.id} id={p.id} className="scroll-mt-24">
+          <Reveal key={p.id} distance={32} duration={900}>
+          <article id={p.id} className="scroll-mt-24">
             {/* Title row */}
             {/* 프로젝트명과 기간을 크게 분리해 첫 스캔에서 핵심 메타가 바로 들어오게 한다. */}
             <header className="border-t border-border pt-8 mb-12">
@@ -206,6 +208,7 @@ export default function Projects({ projects }: Props) {
               </div>
             )}
           </article>
+          </Reveal>
         ))}
       </div>
     </section>

@@ -1,5 +1,7 @@
 // 이 파일은 히어로 다음에 이어지는 짧은 소개와 CTA를 렌더링한다.
 // 자기소개 문장과 프로젝트 이동 버튼을 한 줄 맥락으로 묶어 첫 액션을 유도한다.
+import Reveal from "@/components/ui/Reveal";
+
 // 인트로 섹션 입력 속성 구조다.
 type Props = {
   intro: string;
@@ -23,11 +25,14 @@ export default function Intro({
   return (
     <section className="px-6 md:px-10 max-w-[1400px] mx-auto pt-20 pb-24 md:pt-32 md:pb-40">
       <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10 border-t border-border pt-10">
-        <div className="space-y-2 max-w-xl text-base md:text-lg text-muted-foreground leading-relaxed">
+        <Reveal className="space-y-2 max-w-xl text-base md:text-lg text-muted-foreground leading-relaxed">
           <p>{intro}</p>
-        </div>
+        </Reveal>
 
-        <div className="flex flex-col items-start md:items-end gap-3 text-sm shrink-0">
+        <Reveal
+          delay={150}
+          className="flex flex-col items-start md:items-end gap-3 text-sm shrink-0"
+        >
           {/* 둥근 버튼과 회전하는 화살표로 다음 섹션 이동을 명확히 강조한다. */}
           <a
             href={ctaHref}
@@ -39,7 +44,7 @@ export default function Intro({
             </span>
           </a>
           <span className="text-xs text-muted-foreground">{ctaSubLabel}</span>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
