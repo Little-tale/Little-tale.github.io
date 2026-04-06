@@ -25,6 +25,8 @@ type Props = {
    * `mode="approach"` 와 함께 쓰면 Contact 섹션처럼 아래에서 올라오며 글자가 모이는 효과가 된다.
    */
   invert?: boolean;
+  /** 스크롤 진행도에 따라 지정된 그라데이션 색상으로 전환할지 여부 */
+  useGradient?: boolean;
   className?: string;
   style?: CSSProperties;
 };
@@ -59,6 +61,7 @@ export default function SpreadText({
   seed = 1,
   mode = "pin",
   invert = false,
+  useGradient = false,
   className = "",
   style,
 }: Props) {
@@ -97,6 +100,19 @@ export default function SpreadText({
         const ty = l.dir * distance * animProgress;
         const rot = l.dirRot * rotation * animProgress;
         const letterOpacity = baseOpacity;
+
+        // 글자 인덱스 기반으로 Mint(#C6E5D9) -> Blue(#8BB6C4) 그래디언트 색상 계산
+        let colorStyle: string | undefined;
+        if (useGradient) {
+          const ratio = Math.max(0, Math.min(1, i / Math.max(1, letters.length - 1)));
+          const r = Math.round(198 + (139 - 198) * ratio);
+          const g = Math.round(229 + (182 - 229) * ratio);
+          const b = Math.round(217 + (196 - 217) * ratio);
+          // 모여있을 때(animProgress = 0)가 100% 그라데이션, 퍼질 때(animProgress = 1) 기존 색상(0%)으로 복귀
+          const mixPercent = ((1 - animProgress) * 100).toFixed(1);
+          colorStyle = `color-mix(in srgb, rgb(${r} ${g} ${b}) ${mixPercent}%, currentColor)`;
+        }
+
         return (
           <span
             key={i}
@@ -104,7 +120,8 @@ export default function SpreadText({
               display: "inline-block",
               transform: `translate3d(0, ${ty}em, 0) rotate(${rot}deg)`,
               opacity: letterOpacity,
-              willChange: "transform, opacity",
+              color: colorStyle,
+              willChange: "transform, opacity, color",
               whiteSpace: "pre",
             }}
           >

@@ -52,6 +52,7 @@ export default function Contact({ profile }: Props) {
             <h3 className="text-5xl md:text-8xl font-semibold tracking-[-0.04em] leading-[1.15]">
               <SpreadText
                 invert
+                useGradient
                 distance={5}
                 rotation={12}
                 travel={stageTravel}
@@ -63,6 +64,7 @@ export default function Contact({ profile }: Props) {
               <span className="text-muted-foreground">
                 <SpreadText
                   invert
+                  useGradient
                   distance={5}
                   rotation={12}
                   travel={stageTravel}
@@ -74,6 +76,7 @@ export default function Contact({ profile }: Props) {
               <br />
               <SpreadText
                 invert
+                useGradient
                 distance={5}
                 rotation={12}
                 travel={stageTravel}
