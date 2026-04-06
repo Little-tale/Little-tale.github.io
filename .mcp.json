@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "figma-dev-mode": {
+      "command": "/opt/homebrew/bin/node",
+      "args": [
+        "/Users/jaehyungkim/Library/Application Support/Claude/Claude Extensions/ant.dir.ant.figma.figma/server/index.js"
+      ]
+    }
+  }
+}
