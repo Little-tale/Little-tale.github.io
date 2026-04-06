@@ -42,17 +42,32 @@ export default function Projects({ projects }: Props) {
                   {p.period}
                 </span>
               </div>
-              <h3 className="text-4xl md:text-6xl font-semibold tracking-[-0.03em] leading-tight">
-                {p.title}
-                {p.status && (
-                  <span className="ml-4 align-middle text-xs uppercase tracking-[0.2em] text-muted-foreground border border-border rounded-full px-3 py-1">
-                    {p.status}
-                  </span>
+              {/* 이미지가 있는 프로젝트는 모바일 목업과 텍스트를 좌우로 배치해 스크린샷이 가장 먼저 보이게 한다. */}
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-start">
+                <div className={p.image ? "md:col-span-8" : "md:col-span-12"}>
+                  <h3 className="text-4xl md:text-6xl font-semibold tracking-[-0.03em] leading-tight">
+                    {p.title}
+                    {p.status && (
+                      <span className="ml-4 align-middle text-xs uppercase tracking-[0.2em] text-muted-foreground border border-border rounded-full px-3 py-1">
+                        {p.status}
+                      </span>
+                    )}
+                  </h3>
+                  <p className="mt-6 max-w-3xl text-base md:text-lg text-muted-foreground leading-relaxed">
+                    {p.tagline}
+                  </p>
+                </div>
+                {p.image && (
+                  <div className="md:col-span-4 flex md:justify-end">
+                    <img
+                      src={p.image}
+                      alt={`${p.title} 스크린샷`}
+                      loading="lazy"
+                      className="w-44 md:w-full md:max-w-[220px] h-auto rounded-[28px] shadow-2xl ring-1 ring-border"
+                    />
+                  </div>
                 )}
-              </h3>
-              <p className="mt-6 max-w-3xl text-base md:text-lg text-muted-foreground leading-relaxed">
-                {p.tagline}
-              </p>
+              </div>
             </header>
 
             {/* Meta grid */}

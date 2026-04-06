@@ -24,19 +24,19 @@ export const aiWorkflow: readonly AIWorkflowTool[] = [
   {
     name: "Claude Code",
     vendor: "Anthropic",
-    role: "주력 페어. 리팩터링·테스트·문서화를 함께 굴리는 터미널 코딩 에이전트.",
+    role: "Plan 및 코드 구현을 담당하는 주력 에이전트. 설계부터 구현까지 한 흐름으로 굴린다.",
   },
   {
     name: "Codex",
     alias: "@openai/codex",
     vendor: "OpenAI",
-    role: "두 번째 시선. Rust 기반 터미널 에이전트로 교차 검증과 재구현을 맡긴다.",
+    role: "코드 검증·코드리뷰·재구현 담당. 두 번째 시선으로 Claude의 결과를 교차 검증한다.",
   },
   {
     name: "OpenCode",
     alias: "Oh-my-OpenAgent",
     vendor: "Open Source",
-    role: "멀티모델 하네스. Sisyphus 오케스트레이터로 Claude·GPT·Gemini를 병렬 실행한다.",
+    role: "멀티모델 하네스. GPT·Kimi·GLM 등을 병렬 실행해 같은 문제를 여러 관점으로 본다.",
   },
   {
     name: "Antigravity",
