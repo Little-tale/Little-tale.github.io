@@ -1,59 +1,6 @@
-export const profile = {
-  name: "김재형",
-  nameEn: "Kim Jaehyung",
-  role: "App Developer",
-  birth: "2001. 03. 19",
-  email: "you3192001@gmail.com",
-  phone: "010-6527-6624",
-  github: "https://github.com/Little-tale",
-  blog: "https://velog.io/@little_tail/posts",
-  tagline: "제가 남긴 발자국이 누군가의 꿈이 되기를 바라는 개발자",
-  intro:
-    "Swift 6, Swift Concurrency, AlarmKit, TCA 등 최신 iOS 기술을 적극적으로 학습하고 프로젝트에 적용해 왔습니다. Tuist, Fastlane을 활용해 빌드·배포·모듈화 등 개발 프로세스를 개선하며, 새로운 기술에 대한 도전을 통해 지속적인 성장을 이어가고 있습니다.",
-} as const;
+import type { Project } from "@/domain";
 
-export const philosophy = [
-  {
-    title: "새로운 기술을 도전하는 개발자",
-    body: "iOS 개발에서 Swift 6, Swift Concurrency, AlarmKit, TCA 등 최신 기술을 적극적으로 학습하고 프로젝트에 적용해 왔습니다. Tuist, Fastlane을 활용해 빌드·배포·모듈화 등 개발 프로세스를 개선하며, 새로운 기술에 대한 도전을 통해 지속적인 성장을 이어가고 있습니다.",
-  },
-  {
-    title: "나의 발자국이, 누군가의 꿈으로",
-    body: "Central Makeus Challenge 동아리에서 iOS Lead로서 챌린저들에게 iOS 개발 전반을 안내하고, 프로젝트의 기술적 방향성을 책임졌습니다. 최신 iOS 기술 스택을 기반으로 개발 가이드를 제공하고, 코드 리뷰와 문제 해결을 통해 챌린저들의 성장을 지원했습니다.",
-  },
-  {
-    title: "문제 해결을 중요하게",
-    body: "새로운 기술과 더 나은 코드를 지속적으로 탐구하지만, 개발에서 가장 중요하게 생각하는 것은 문제 해결입니다. MissGo 부동산 앱의 지도 기반 화면에서 발생하던 Thread Explosion 문제를 분석하고 Swift Concurrency로 전환했으며, 동시에 MVC 구조를 MVI로 개선해 유지보수 관점도 함께 고려했습니다.",
-  },
-  {
-    title: "경험을 기록으로",
-    body: "문제를 해결하는 데서 멈추지 않고, 그 과정과 배움을 기록으로 남깁니다. 경험을 공유하며 되돌아보고, 기록을 통해 한 단계 더 성장하는 개발자가 되고자 합니다.",
-  },
-] as const;
-
-export type Project = {
-  id: string;
-  title: string;
-  index: string;
-  tagline: string;
-  period: string;
-  team: string;
-  status?: string;
-  link?: { label: string; href: string };
-  env: { xcode: string; minIOS: string; swift: string };
-  features: { title: string; body: string }[];
-  stack: { label: string; items: string }[];
-  highlights: { title: string; body: string }[];
-  troubles: {
-    title: string;
-    problem: string;
-    cause?: string;
-    solution: string;
-    bullets?: string[];
-  }[];
-};
-
-export const projects: Project[] = [
+export const projects: readonly Project[] = [
   {
     id: "missgo",
     title: "미스고 부동산",
@@ -353,8 +300,7 @@ export const projects: Project[] = [
       },
       {
         title: "API 인코딩 전략 불일치",
-        problem:
-          "특정 요청에서만 통신이 실패해 원인 파악이 어려웠습니다.",
+        problem: "특정 요청에서만 통신이 실패해 원인 파악이 어려웠습니다.",
         cause:
           "프로젝트 전역에 SnakeCase Encoding을 적용했으나 일부 프로퍼티에서 CamelCase를 요구하는 것을 확인했습니다.",
         solution: "CodingKeys로 서버가 요구하는 키를 명시적으로 매핑.",
@@ -475,83 +421,3 @@ export const projects: Project[] = [
     ],
   },
 ];
-
-export const skills = {
-  Frameworks: ["UIKit", "SwiftUI", "AlarmKit", "MapKit", "Flutter"],
-  Network: ["URLSession", "Alamofire", "Socket.IO"],
-  "Reactive & State": ["RxSwift", "Combine"],
-  Architecture: ["MVC", "MVVM", "MVI", "Redux", "TCA"],
-  Tools: ["GitHub", "Slack", "Tuist", "Fastlane", "Figma"],
-  Others: ["Realm", "SnapKit", "PinLayout", "Dart"],
-} as const;
-
-export const work = [
-  {
-    company: "미스고 부동산",
-    role: "iOS 개발 파트 주임",
-    period: "2024.12.03 — 2025.05.10",
-    body: "부동산 앱 iOS 클라이언트 개발 책임 리드.",
-  },
-] as const;
-
-export const leadership = [
-  {
-    company: "Central Makeus Challenge",
-    role: "iOS 개발 파트 리드",
-    period: "2025.03.15 — 참여중",
-    body: "챌린저 코드 리딩 및 프로젝트 관리.",
-  },
-] as const;
-
-export const education = [
-  {
-    school: "ICT폴리텍대학",
-    major: "정보통신공학",
-    period: "2020.03 — 2024.02",
-    note: "GPA 4.27 / 4.5",
-  },
-] as const;
-
-export const activities = [
-  {
-    name: "CMC 개발 동아리",
-    role: "iOS 개발 챌린저 16th",
-    body: "굴비잇기 앱 개발",
-  },
-] as const;
-
-export const awards = [
-  {
-    title: "Central Makeus Challenge 16th 대상",
-    date: "2025.03",
-    body: "금융관리 굴비잇기 앱을 개발하여 대상 수상",
-  },
-  {
-    title: "SeSAC iOS 경진대회 1st",
-    date: "2024.05",
-    body: "LSLP 경진대회에서 커뮤니티 CategoryZ 앱을 통해 1등 수상",
-  },
-  {
-    title: "한국 디지털 컨텐츠 학회 학술대회 동상",
-    date: "2023.11",
-    body: "IoT와 애플리케이션 제어를 통한 COMHOME 앱 개발 논문",
-  },
-  {
-    title: "ICT폴리텍대학 졸업 작품전 대상",
-    date: "2023.11",
-    body: "IoT APP COMHOME을 개발하여 대상 수상",
-  },
-] as const;
-
-export const certificates = [
-  {
-    title: "정보통신 산업기사",
-    date: "2023.05",
-    body: "KCA (국가 기술 자격 검정)",
-  },
-  {
-    title: "네트워크 관리사",
-    date: "2020.12",
-    body: "ICQA (한국정보통신자격협회)",
-  },
-] as const;

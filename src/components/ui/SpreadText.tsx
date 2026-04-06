@@ -1,13 +1,5 @@
-"use client";
-
-import {
-  CSSProperties,
-  ReactNode,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { CSSProperties, useMemo, useRef } from "react";
+import { useScrollProgress } from "@/hooks";
 
 type Props = {
   children: string;
@@ -15,7 +7,7 @@ type Props = {
   distance?: number;
   /** maximum rotation in degrees at full scatter */
   rotation?: number;
-  /** how far the element must scroll past the top of the viewport to reach full scatter (px) */
+  /** how far the stage must scroll to reach full scatter (px) */
   travel?: number;
   /** stable seed so each occurrence has its own letter pattern */
   seed?: number;
@@ -46,58 +38,18 @@ export default function SpreadText({
   style,
 }: Props) {
   const ref = useRef<HTMLSpanElement>(null);
-  const [progress, setProgress] = useState(0);
+  const progress = useScrollProgress(ref, travel);
 
   const letters = useMemo(() => {
     const chars = Array.from(children);
     return chars.map((ch, i) => ({
       ch,
-      dir: rand(i + 1, seed), // -1..1, used for both ty and rotation
+      dir: rand(i + 1, seed),
       dirRot: rand(i + 1, seed + 91),
     }));
   }, [children, seed]);
 
-  useEffect(() => {
-    let raf = 0;
-    const compute = () => {
-      const el = ref.current;
-      if (!el) return;
-      // Find the nearest sticky-scroll ancestor (if any). We measure progress
-      // against the scroll container's own position, not the element's
-      // getBoundingClientRect — because when the element is sticky-pinned, its
-      // rect.top stays at 0 and progress would never advance.
-      // Strategy: walk up until we find a section with data-scroll-stage,
-      // otherwise fall back to the element's own top.
-      let stage: HTMLElement | null = el.closest(
-        "[data-scroll-stage]"
-      ) as HTMLElement | null;
-      let p: number;
-      if (stage) {
-        const sRect = stage.getBoundingClientRect();
-        // progress is how far the stage has been scrolled through.
-        // -sRect.top grows from 0 to (stage.height - viewportHeight).
-        p = -sRect.top / travel;
-      } else {
-        const rect = el.getBoundingClientRect();
-        p = -rect.top / travel;
-      }
-      setProgress(Math.max(0, Math.min(1, p)));
-    };
-    const onScroll = () => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(compute);
-    };
-    compute();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, [travel]);
-
-  // linear — bettinasosa feels linear in scroll; small ease only near start
+  // linear — bettinasosa feels linear in scroll
   const eased = progress;
 
   return (

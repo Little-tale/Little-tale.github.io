@@ -1,7 +1,11 @@
-import { projects } from "@/lib/content";
-import SectionHeader from "./SectionHeader";
+import type { Project } from "@/domain";
+import SectionHeader from "@/components/ui/SectionHeader";
 
-export default function Projects() {
+type Props = {
+  projects: readonly Project[];
+};
+
+export default function Projects({ projects }: Props) {
   return (
     <section
       id="projects"
@@ -15,11 +19,7 @@ export default function Projects() {
 
       <div className="space-y-32 md:space-y-48">
         {projects.map((p) => (
-          <article
-            key={p.id}
-            id={p.id}
-            className="scroll-mt-24"
-          >
+          <article key={p.id} id={p.id} className="scroll-mt-24">
             {/* Title row */}
             <header className="border-t border-border pt-8 mb-12">
               <div className="flex items-baseline justify-between gap-6 mb-6">

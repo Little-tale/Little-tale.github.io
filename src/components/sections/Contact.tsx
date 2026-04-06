@@ -1,13 +1,21 @@
-import { profile } from "@/lib/content";
-import SectionHeader from "./SectionHeader";
+import type { Profile } from "@/domain";
+import SectionHeader from "@/components/ui/SectionHeader";
 
-export default function Contact() {
+type Props = {
+  profile: Profile;
+};
+
+export default function Contact({ profile }: Props) {
   return (
     <section
       id="contact"
       className="px-6 md:px-10 max-w-[1400px] mx-auto py-24 md:py-32"
     >
-      <SectionHeader index="(05) Contact" title="Let's Talk" subtitle="Get in touch" />
+      <SectionHeader
+        index="(05) Contact"
+        title="Let's Talk"
+        subtitle="Get in touch"
+      />
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
         <div className="lg:col-span-8">

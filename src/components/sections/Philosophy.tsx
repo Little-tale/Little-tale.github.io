@@ -1,7 +1,11 @@
-import { philosophy } from "@/lib/content";
-import SectionHeader from "./SectionHeader";
+import type { PhilosophyEntry } from "@/domain";
+import SectionHeader from "@/components/ui/SectionHeader";
 
-export default function Philosophy() {
+type Props = {
+  entries: readonly PhilosophyEntry[];
+};
+
+export default function Philosophy({ entries }: Props) {
   return (
     <section
       id="philosophy"
@@ -14,7 +18,7 @@ export default function Philosophy() {
       />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border">
-        {philosophy.map((p, i) => (
+        {entries.map((p, i) => (
           <div
             key={p.title}
             className="bg-background p-8 md:p-12 hover:bg-muted transition-colors group"

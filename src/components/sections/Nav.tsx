@@ -1,8 +1,13 @@
-"use client";
-
 import { useEffect, useState } from "react";
 
-const links = [
+type NavLink = { href: string; label: string };
+
+type Props = {
+  email: string;
+  links?: readonly NavLink[];
+};
+
+const DEFAULT_LINKS: readonly NavLink[] = [
   { href: "#about", label: "About" },
   { href: "#philosophy", label: "Philosophy" },
   { href: "#projects", label: "Projects" },
@@ -10,7 +15,7 @@ const links = [
   { href: "#contact", label: "Contact" },
 ];
 
-export default function Nav() {
+export default function Nav({ email, links = DEFAULT_LINKS }: Props) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -51,7 +56,7 @@ export default function Nav() {
         </ul>
 
         <a
-          href="mailto:you3192001@gmail.com"
+          href={`mailto:${email}`}
           className="hidden md:inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] border border-border rounded-full px-4 py-2 hover:bg-foreground hover:text-background transition-colors"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />

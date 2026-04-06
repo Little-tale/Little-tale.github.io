@@ -1,0 +1,20 @@
+import type { PhilosophyEntry } from "@/domain";
+
+export const philosophy: readonly PhilosophyEntry[] = [
+  {
+    title: "새로운 기술을 도전하는 개발자",
+    body: "iOS 개발에서 Swift 6, Swift Concurrency, AlarmKit, TCA 등 최신 기술을 적극적으로 학습하고 프로젝트에 적용해 왔습니다. Tuist, Fastlane을 활용해 빌드·배포·모듈화 등 개발 프로세스를 개선하며, 새로운 기술에 대한 도전을 통해 지속적인 성장을 이어가고 있습니다.",
+  },
+  {
+    title: "나의 발자국이, 누군가의 꿈으로",
+    body: "Central Makeus Challenge 동아리에서 iOS Lead로서 챌린저들에게 iOS 개발 전반을 안내하고, 프로젝트의 기술적 방향성을 책임졌습니다. 최신 iOS 기술 스택을 기반으로 개발 가이드를 제공하고, 코드 리뷰와 문제 해결을 통해 챌린저들의 성장을 지원했습니다.",
+  },
+  {
+    title: "문제 해결을 중요하게",
+    body: "새로운 기술과 더 나은 코드를 지속적으로 탐구하지만, 개발에서 가장 중요하게 생각하는 것은 문제 해결입니다. MissGo 부동산 앱의 지도 기반 화면에서 발생하던 Thread Explosion 문제를 분석하고 Swift Concurrency로 전환했으며, 동시에 MVC 구조를 MVI로 개선해 유지보수 관점도 함께 고려했습니다.",
+  },
+  {
+    title: "경험을 기록으로",
+    body: "문제를 해결하는 데서 멈추지 않고, 그 과정과 배움을 기록으로 남깁니다. 경험을 공유하며 되돌아보고, 기록을 통해 한 단계 더 성장하는 개발자가 되고자 합니다.",
+  },
+];

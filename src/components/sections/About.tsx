@@ -1,20 +1,12 @@
-import {
-  work,
-  leadership,
-  education,
-  activities,
-  awards,
-  certificates,
-  profile,
-} from "@/lib/content";
-import SectionHeader from "./SectionHeader";
+import type { Profile, Resume, ResumeEntry } from "@/domain";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 function Block({
   label,
   items,
 }: {
   label: string;
-  items: { title: string; meta?: string; body: string }[];
+  items: readonly ResumeEntry[];
 }) {
   return (
     <div className="border-t border-border pt-6">
@@ -42,7 +34,42 @@ function Block({
   );
 }
 
-export default function About() {
+type Props = {
+  profile: Profile;
+  resume: Resume;
+};
+
+export default function About({ profile, resume }: Props) {
+  const workItems: ResumeEntry[] = resume.work.map((w) => ({
+    title: `${w.company} — ${w.role}`,
+    meta: w.period,
+    body: w.body,
+  }));
+  const leadershipItems: ResumeEntry[] = resume.leadership.map((w) => ({
+    title: `${w.company} — ${w.role}`,
+    meta: w.period,
+    body: w.body,
+  }));
+  const educationItems: ResumeEntry[] = resume.education.map((w) => ({
+    title: `${w.school} · ${w.major}`,
+    meta: w.period,
+    body: w.note,
+  }));
+  const activityItems: ResumeEntry[] = resume.activities.map((w) => ({
+    title: `${w.name} — ${w.role}`,
+    body: w.body,
+  }));
+  const awardItems: ResumeEntry[] = resume.awards.map((w) => ({
+    title: w.title,
+    meta: w.date,
+    body: w.body,
+  }));
+  const certificateItems: ResumeEntry[] = resume.certificates.map((w) => ({
+    title: w.title,
+    meta: w.date,
+    body: w.body,
+  }));
+
   return (
     <section
       id="about"
@@ -105,53 +132,12 @@ export default function About() {
         </div>
 
         <div className="lg:col-span-7 space-y-12">
-          <Block
-            label="Work Experience"
-            items={work.map((w) => ({
-              title: `${w.company} — ${w.role}`,
-              meta: w.period,
-              body: w.body,
-            }))}
-          />
-          <Block
-            label="Leadership"
-            items={leadership.map((w) => ({
-              title: `${w.company} — ${w.role}`,
-              meta: w.period,
-              body: w.body,
-            }))}
-          />
-          <Block
-            label="Education"
-            items={education.map((w) => ({
-              title: `${w.school} · ${w.major}`,
-              meta: w.period,
-              body: w.note,
-            }))}
-          />
-          <Block
-            label="Activities"
-            items={activities.map((w) => ({
-              title: `${w.name} — ${w.role}`,
-              body: w.body,
-            }))}
-          />
-          <Block
-            label="Awards & Honors"
-            items={awards.map((w) => ({
-              title: w.title,
-              meta: w.date,
-              body: w.body,
-            }))}
-          />
-          <Block
-            label="Certificates"
-            items={certificates.map((w) => ({
-              title: w.title,
-              meta: w.date,
-              body: w.body,
-            }))}
-          />
+          <Block label="Work Experience" items={workItems} />
+          <Block label="Leadership" items={leadershipItems} />
+          <Block label="Education" items={educationItems} />
+          <Block label="Activities" items={activityItems} />
+          <Block label="Awards & Honors" items={awardItems} />
+          <Block label="Certificates" items={certificateItems} />
         </div>
       </div>
     </section>
