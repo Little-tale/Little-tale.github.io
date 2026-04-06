@@ -2,6 +2,7 @@
 // 정적인 태그 목록과 반복 애니메이션을 함께 사용해 기술 폭과 시각적 리듬을 동시에 보여 준다.
 import type { SkillCategory } from "@/domain";
 import SectionHeader from "@/components/ui/SectionHeader";
+import Reveal from "@/components/ui/Reveal";
 
 // 스킬 섹션 입력 속성 구조다.
 type Props = {
@@ -23,15 +24,15 @@ export default function Skills({ categories }: Props) {
       className="px-6 md:px-10 max-w-[1400px] mx-auto py-24 md:py-32"
     >
       <SectionHeader
-        index="(04) Skills"
+        index="(05) Skills"
         title="Toolkit"
         subtitle="Tech Stack"
       />
 
       {/* 상단은 카테고리별 태그 카드, 하단은 전체 기술을 흐르게 보여 주는 대비 구조다. */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border mb-16">
-        {categories.map((c) => (
-          <div key={c.name} className="bg-background p-8">
+        {categories.map((c, i) => (
+          <Reveal key={c.name} delay={i * 90} className="bg-background p-8">
             <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-5">
               {c.name}
             </p>
@@ -45,7 +46,7 @@ export default function Skills({ categories }: Props) {
                 </li>
               ))}
             </ul>
-          </div>
+          </Reveal>
         ))}
       </div>
 

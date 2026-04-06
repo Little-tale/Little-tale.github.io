@@ -2,6 +2,7 @@
 // 원본 resume 데이터를 화면용 공통 엔트리 구조로 변환해 여러 섹션을 같은 카드 패턴으로 표현한다.
 import type { Profile, Resume, ResumeEntry } from "@/domain";
 import SectionHeader from "@/components/ui/SectionHeader";
+import Reveal from "@/components/ui/Reveal";
 
 /**
  * About 섹션 오른쪽 컬럼에 쓰이는 공통 이력 블록을 렌더링한다.
@@ -15,9 +16,11 @@ function Block({
   label: string;
   items: readonly ResumeEntry[];
 }) {
+  // 항목이 없는 블록은 라벨만 남겨두면 오히려 레이아웃에 구멍이 생기므로 렌더링을 건너뛴다.
+  if (items.length === 0) return null;
   // 섹션마다 얇은 경계선을 두어 긴 이력 목록을 시각적으로 끊어 읽기 쉽게 만든다.
   return (
-    <div className="border-t border-border pt-6">
+    <Reveal className="border-t border-border pt-6">
       <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-6">
         {label}
       </p>
@@ -38,7 +41,7 @@ function Block({
           </li>
         ))}
       </ul>
-    </div>
+    </Reveal>
   );
 }
 
@@ -99,7 +102,7 @@ export default function About({ profile, resume }: Props) {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         {/* 좌측은 가치관/연락처처럼 정적인 자기소개 정보를 모은다. */}
-        <div className="lg:col-span-5 space-y-6">
+        <Reveal className="lg:col-span-5 space-y-6">
           <p className="text-2xl md:text-3xl leading-snug tracking-[-0.02em]">
             “{profile.tagline}”
           </p>
@@ -146,7 +149,7 @@ export default function About({ profile, resume }: Props) {
               </dd>
             </div>
           </dl>
-        </div>
+        </Reveal>
 
         {/* 우측은 공통 블록 컴포넌트로 이력 카테고리를 길게 이어 붙인다. */}
         <div className="lg:col-span-7 space-y-12">

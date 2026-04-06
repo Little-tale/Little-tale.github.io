@@ -7,21 +7,26 @@ export const resume: Resume = {
   // 최근 실무 경험부터 시작해 커리어 맥락이 먼저 보이도록 배치한다.
   work: [
     {
+      company: "TOPPING",
+      role: "Flutter 앱 프론트팀 / 사원",
+      period: "2026.02 — 진행중",
+      body: "Flutter 기반 앱 프론트엔드 개발.",
+    },
+    {
       company: "미스고 부동산",
       role: "iOS 개발 파트 주임",
       period: "2024.12.03 — 2025.05.10",
       body: "부동산 앱 iOS 클라이언트 개발 책임 리드.",
     },
-  ],
-  // 현재 진행 중인 리드 경험을 별도 섹션으로 분리해 강조한다.
-  leadership: [
     {
       company: "Central Makeus Challenge",
-      role: "iOS 개발 파트 리드",
-      period: "2025.03.15 — 참여중",
-      body: "챌린저 코드 리딩 및 프로젝트 관리.",
+      role: "iOS Lead",
+      period: "2025.03 — 2026.03.14",
+      body: "챌린저 코드 리딩 및 프로젝트 관리, iOS 개발 가이드 제공.",
     },
   ],
+  // leadership 항목은 현재 work에 통합되어 비어 있지만, 구조는 그대로 유지한다.
+  leadership: [],
   // 학력은 한 줄 메타보다 설명형 note가 더 중요해 별도 필드로 둔다.
   education: [
     {

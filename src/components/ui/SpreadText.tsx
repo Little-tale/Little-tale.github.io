@@ -1,7 +1,7 @@
 // 이 파일은 스크롤 진행도에 따라 글자가 흩어지는 연출을 만드는 텍스트 전용 UI 컴포넌트다.
 // 각 글자의 이동 방향을 고정된 시드로 생성해, 리렌더가 일어나도 같은 단어는 같은 패턴을 유지한다.
 import { CSSProperties, useMemo, useRef } from "react";
-import { useScrollProgress } from "@/hooks";
+import { useScrollProgress, type ScrollProgressMode } from "@/hooks";
 
 // 분산 텍스트 효과를 제어하는 입력 속성들이다.
 type Props = {
@@ -14,6 +14,17 @@ type Props = {
   travel?: number;
   /** stable seed so each occurrence has its own letter pattern */
   seed?: number;
+  /**
+   * 스크롤 진행도를 어떤 방식으로 측정할지 결정한다.
+   * - `pin`: 기본값. 상위 `[data-scroll-stage]` 기준으로 sticky 레이아웃에 맞춰 계산.
+   * - `approach`: 요소가 뷰포트 아래에서 올라오는 동안의 진행도를 계산.
+   */
+  mode?: ScrollProgressMode;
+  /**
+   * 진행도를 뒤집어 "처음 흩어진 상태 -> 스크롤할수록 모이는" 역방향 연출을 만든다.
+   * `mode="approach"` 와 함께 쓰면 Contact 섹션처럼 아래에서 올라오며 글자가 모이는 효과가 된다.
+   */
+  invert?: boolean;
   className?: string;
   style?: CSSProperties;
 };
@@ -46,12 +57,14 @@ export default function SpreadText({
   rotation = 15,
   travel = 600,
   seed = 1,
+  mode = "pin",
+  invert = false,
   className = "",
   style,
 }: Props) {
   const ref = useRef<HTMLSpanElement>(null);
   // 텍스트 자체가 stage 안에서 얼마나 진행됐는지를 애니메이션 강도로 사용한다.
-  const progress = useScrollProgress(ref, travel);
+  const scroll = useScrollProgress(ref, travel, mode);
 
   const letters = useMemo(() => {
     // 문자열이 바뀔 때만 글자별 방향 벡터를 다시 계산해 패턴 안정성과 비용을 함께 잡는다.
@@ -63,8 +76,11 @@ export default function SpreadText({
     }));
   }, [children, seed]);
 
-  // linear — bettinasosa feels linear in scroll
-  const eased = progress;
+  // invert 가 켜지면 0(=흩어진 상태) -> 1(=모인 상태) 로 진행도를 뒤집는다.
+  const animProgress = invert ? 1 - scroll : scroll;
+  // 순방향은 스크롤할수록 글자를 옅게 만들어 분산감을 강조하고,
+  // 역방향(gather)은 처음부터 글자가 잘 보여야 하므로 불투명도를 유지한다.
+  const baseOpacity = invert ? 1 : Math.max(0, 1 - scroll * 1.4);
 
   // 외부 스타일을 허용하되 인라인 블록으로 고정해 글자 단위 transform이 줄바꿈에 덜 흔들리게 한다.
   return (
@@ -78,10 +94,9 @@ export default function SpreadText({
     >
       {letters.map((l, i) => {
         const isSpace = l.ch === " ";
-        const ty = l.dir * distance * eased;
-        const rot = l.dirRot * rotation * eased;
-        // 스크롤이 진행될수록 글자를 옅게 만들어 분산감이 더 강하게 느껴지게 한다.
-        const letterOpacity = Math.max(0, 1 - progress * 1.4);
+        const ty = l.dir * distance * animProgress;
+        const rot = l.dirRot * rotation * animProgress;
+        const letterOpacity = baseOpacity;
         return (
           <span
             key={i}

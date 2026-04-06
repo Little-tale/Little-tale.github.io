@@ -6,6 +6,7 @@ import Hero from "@/components/sections/Hero";
 import Intro from "@/components/sections/Intro";
 import About from "@/components/sections/About";
 import Philosophy from "@/components/sections/Philosophy";
+import AIWorkflow from "@/components/sections/AIWorkflow";
 import Projects from "@/components/sections/Projects";
 import Skills from "@/components/sections/Skills";
 import Contact from "@/components/sections/Contact";
@@ -17,7 +18,8 @@ import Footer from "@/components/sections/Footer";
  * 반환값은 내비게이션, 소개, 프로젝트, 연락처를 포함한 전체 페이지 JSX다.
  */
 export default function App() {
-  const { profile, philosophy, projects, skills, resume } = portfolioContent;
+  const { profile, philosophy, projects, skills, aiWorkflow, resume } =
+    portfolioContent;
   // 소개 섹션의 CTA 보조 문구에서 실제 프로젝트 개수를 자동 반영한다.
   const projectCount = projects.length;
 
@@ -36,9 +38,10 @@ export default function App() {
           intro={profile.intro}
           ctaSubLabel={`${projectCount} projects · Swift · TCA · Concurrency`}
         />
-        {/* 이후 섹션은 소개 -> 철학 -> 작업물 -> 스택 -> 연락 흐름으로 이어진다. */}
+        {/* 이후 섹션은 소개 -> 철학 -> AI 워크플로 -> 작업물 -> 스택 -> 연락 흐름으로 이어진다. */}
         <About profile={profile} resume={resume} />
         <Philosophy entries={philosophy} />
+        <AIWorkflow tools={aiWorkflow} />
         <Projects projects={projects} />
         <Skills categories={skills} />
         <Contact profile={profile} />
