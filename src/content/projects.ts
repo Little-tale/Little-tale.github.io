@@ -9,6 +9,7 @@ export const projects: readonly Project[] = [
     id: "missgo",
     title: "미스고 부동산",
     index: "01",
+    image: "/projects/1.svg",
     tagline:
       "이젠 누구나 쉽고 간편하게 부동산 경매를 할 수 있습니다. 미스고부동산 테크놀로지는 대법원경매에 필요한 모든 정보를 제공합니다.",
     period: "2024.12.03 ~ 2025.05.10",
@@ -128,6 +129,7 @@ export const projects: readonly Project[] = [
     id: "goolbi",
     title: "굴비잇기",
     index: "02",
+    image: "/projects/2.svg",
     tagline:
       "굴비들의 짠테크! '굴비잇기'로 슬기롭게 절약하고 지속 가능한 습관을 형성하세요.",
     period: "2025.01.04 ~ 유지보수 중",
@@ -241,6 +243,7 @@ export const projects: readonly Project[] = [
     id: "categoryz",
     title: "CategoryZ",
     index: "03",
+    image: "/projects/3.svg",
     tagline:
       "당신의 일상과 특별한 순간! 그 외에도 다양한 경험을 CategoryZ로 공유해보세요!",
     period: "2024.04.13 ~ 2024.06.11",
@@ -339,6 +342,7 @@ export const projects: readonly Project[] = [
     id: "guideu",
     title: "Guide-U",
     index: "04",
+    image: "/projects/4.svg",
     tagline:
       "가이두와 함께하는 편리한 왁타버스 덕질생활. 당신을 위한 왁타버스 가이드를 모바일에서도 만나보세요!",
     period: "2024.09.02 ~ 2024.10.30",

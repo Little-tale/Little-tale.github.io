@@ -44,7 +44,7 @@ export default function Hero({
             className="text-[22vw] md:text-[16vw] leading-[0.85] font-semibold tracking-[-0.04em] fade-up"
             style={{ animationDelay: "0.2s" }}
           >
-            <SpreadText distance={3} rotation={10} travel={700} seed={3}>
+            <SpreadText distance={3} rotation={10} travel={700} seed={3} useGradient>
               {name}
             </SpreadText>
           </h1>
@@ -52,7 +52,7 @@ export default function Hero({
             className="mt-6 text-[14vw] md:text-[10vw] leading-[0.85] font-light tracking-[-0.03em] text-muted-foreground fade-up"
             style={{ animationDelay: "0.3s" }}
           >
-            <SpreadText distance={4} rotation={12} travel={700} seed={11}>
+            <SpreadText distance={4} rotation={12} travel={700} seed={11} useGradient>
               {role}
             </SpreadText>
           </h2>

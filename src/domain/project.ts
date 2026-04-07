@@ -49,6 +49,7 @@ export type Project = {
   period: string;
   team: string;
   status?: string;
+  image?: string;
   link?: ProjectLink;
   env: ProjectEnv;
   features: readonly ProjectFeature[];

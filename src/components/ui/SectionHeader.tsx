@@ -44,7 +44,7 @@ export default function SectionHeader({ index, title, subtitle }: Props) {
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       className="border-t border-transparent pt-10 mb-16 md:mb-24 transition-colors duration-1000"
-      // Added tailwind border-transparent and use a class that overrides the border transition safely. Actually framer motion can do it.
+    // Added tailwind border-transparent and use a class that overrides the border transition safely. Actually framer motion can do it.
     >
       <div className="flex items-baseline justify-between gap-6">
         <motion.span
