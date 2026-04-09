@@ -18,7 +18,7 @@ export default function AIWorkflow({ tools }: Props) {
   return (
     <section
       id="ai-workflow"
-      className="px-6 md:px-10 max-w-[1400px] mx-auto py-24 md:py-32"
+      className="px-6 md:px-10 max-w-[1400px] mx-auto pt-24 md:pt-32 pb-12 md:pb-16"
     >
       <SectionHeader
         index="(03) AI Workflow"

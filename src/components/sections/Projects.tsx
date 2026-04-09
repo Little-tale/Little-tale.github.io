@@ -53,6 +53,18 @@ export default function Projects({ projects }: Props) {
                       </span>
                     )}
                   </h3>
+                  {p.link && (
+                    <div className="mt-3 flex justify-end">
+                      <a
+                        href={p.link.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1 text-sm link-underline"
+                      >
+                        ↗ {p.link.label}
+                      </a>
+                    </div>
+                  )}
                   <p className="mt-6 max-w-3xl text-base md:text-lg text-muted-foreground leading-relaxed">
                     {p.tagline}
                   </p>
@@ -210,18 +222,6 @@ export default function Projects({ projects }: Props) {
               </div>
             </div>
 
-            {p.link && (
-              <div className="mt-12">
-                <a
-                  href={p.link.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 text-sm link-underline"
-                >
-                  ↗ {p.link.label}
-                </a>
-              </div>
-            )}
           </article>
           </Reveal>
         ))}
